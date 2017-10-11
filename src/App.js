@@ -7,6 +7,7 @@ import './App.css';
 import authClient from './authClient';
 import sagas from './sagas';
 import themeReducer from './themeReducer';
+import columnReducer from './columnpicker/reducer';
 import Login from './Login';
 import Layout from './Layout';
 import Menu from './Menu';
@@ -37,7 +38,7 @@ class App extends Component {
             <Admin
                 title="Posters Galore Admin"
                 restClient={restClient}
-                customReducers={{ theme: themeReducer }}
+                customReducers={{ theme: themeReducer, columnsDisplayed: columnReducer }}
                 customSagas={sagas}
                 customRoutes={customRoutes}
                 authClient={authClient}
