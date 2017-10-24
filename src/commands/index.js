@@ -47,16 +47,18 @@ const CommandFilter = (props) => (
 );
 
 export const CommandList = (props) => (
-    <ColumnPickableList {...props} filters={<CommandFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
-        <DateField source="date" showTime />
-        <TextField source="reference" />
-        <CustomerReferenceField />
-        <NbItemsField />
-        <NumberField source="total" options={{ style: 'currency', currency: 'USD' }} elStyle={{ fontWeight: 'bold' }}/>
-        <TextField source="status" />
-        <BooleanField source="returned" />
-        <EditButton />
-    </ColumnPickableList>
+    <List {...props} filters={<CommandFilter />} sort={{ field: 'date', order: 'DESC' }} perPage={25}>
+        <ColumnPickableList {...props}>
+            <DateField source="date" showTime />
+            <TextField source="reference" />
+            <CustomerReferenceField />
+            <NbItemsField />
+            <NumberField source="total" options={{ style: 'currency', currency: 'USD' }} elStyle={{ fontWeight: 'bold' }}/>
+            <TextField source="status" />
+            <BooleanField source="returned" />
+            <EditButton />
+        </ColumnPickableList>
+    </List>
 );
 
 const CommandTitle = translate(({ record, translate }) => <span>{translate('resources.commands.name', { smart_count: 1 })} #{record.reference}</span>);

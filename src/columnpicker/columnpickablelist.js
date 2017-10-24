@@ -18,6 +18,7 @@ export class ColumnPickableList extends React.Component {
         this.props.initializeColumnPicker(this.props.resource, columnsDisplayed);
     }
 
+    /*
     shouldComponentUpdate(nextProps) {
         const diff = nextProps.columnsDisplayed.filter((currentColumn) => {
             return !this.props.columnsDisplayed.some((prevColumn) => {
@@ -27,6 +28,7 @@ export class ColumnPickableList extends React.Component {
 
         return diff.length > 0;
     }
+    */
 
     removeHiddenColumns(children) {
         return React.Children.map(children, (child) => {
@@ -47,16 +49,13 @@ export class ColumnPickableList extends React.Component {
     render() {
         const { children, ...rest } = this.props;
         const childrenToRender = this.removeHiddenColumns(children);
-        alert('Annoying alert states that these children/columns should be rendered: '+ childrenToRender.map((child) => child.props.source));
 
         return (
             <div className="columnpickable-list">
                 <ColumnPicker columns={this.props.columnsDisplayed} onCheckboxChanged={this.props.handleCheckboxChanged} />
-                <List {...rest}>
-                    <Datagrid>
-                        {childrenToRender}
-                    </Datagrid>
-                </List>
+                <Datagrid {...rest}>
+                    {childrenToRender}
+                </Datagrid>
             </div>
         );
     }
